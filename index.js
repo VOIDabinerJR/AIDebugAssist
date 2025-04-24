@@ -1,57 +1,43 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const multer = require('multer');
-
-
-//const { sendRecoverEmail } = require('./utils/email');
-
-require('dotenv').config({ path: './.env' });
+const dotenv = require('dotenv');
+dotenv.config({ path: './.env' });
 
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+// Middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(cors({
-    origin: [],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+    origin: [], // Coloca aqui o domínio frontend ex: ['http://localhost:5173']
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
 }));
+
+// View engine (opcional)
 app.set('view engine', 'ejs');
-//app.set('views', path.join(__dirname, 'views/formulario'));
+// app.set('views', path.join(__dirname, 'views'));
 
+// Static file (se tiver HTML ou assets)
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-
+// Routes
 const authRoutes = require('./routes/authRoutes');
+const debugRoutes = require('./routes/debugRoutes');
+
 app.use('/auth', authRoutes);
-//const pagesRoutes = require('./routes/pagesRoutes');
-//const userRoutes = require('./routes/userRoutes');
-//const buttonRoutes = require('./routes/buttonRoutes');
-//const orderRoutes = require('./routes/orderRoutes');
-//const payRoutes = require('./routes/payRoutes');
-//const sdkRoutes = require('./routes/sdkRoutes');
+app.use('/debug', debugRoutes); // inputs e outputs
 
-
-//app.use('/pages', pagesRoutes);
-//app.use('/user', userRoutes);
-//app.use('/button', buttonRoutes);
-//app.use('/order', orderRoutes);
-//app.use('/pay', payRoutes);
-//app.use('/sdk', sdkRoutes); 
-
-app.get('/a', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+// Test route
+app.get('/', (req, res) => {
+    res.send('Welcome to the API!');
 });
 
-
-
-
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`🔥 Server running on port ${PORT}`);
 });
