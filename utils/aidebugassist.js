@@ -16,7 +16,7 @@ async function askGemini(prompt) {
                 contents: [{
                     parts: [{ text: prompt }]
                 }]
-            })
+            }) 
         }); 
 
         const data = await response.json();
@@ -41,7 +41,7 @@ async function ask(prompt) {
 }
 async function ask2(prompt) {
  
-    return askGemini(` ${prompt}`);
+    return askGemini(` ${prompt}. por favor não exceda 1000 caracteres`);
 }
 
 module.exports = { askGemini, ask, ask2 };
