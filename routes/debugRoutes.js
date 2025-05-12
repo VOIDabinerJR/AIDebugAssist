@@ -5,6 +5,7 @@ const inputController = require('../controllers/inputController');
 const outputController = require('../controllers/outputController');
 
 router.post('/in', inputController.createInput);
+router.post('/in2', inputController.createInput);
 router.post('/out', outputController.createOutput);
 
  
