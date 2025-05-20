@@ -7,17 +7,15 @@ dotenv.config({ path: './.env' });
 
 const app = express();
 
-// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
-    origin: [], // Coloca aqui o domínio frontend ex: ['http://localhost:5173']
+    origin: [], 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
 
-// View engine (opcional)
 app.set('view engine', 'ejs');
 // app.set('views', path.join(__dirname, 'views'));
 
