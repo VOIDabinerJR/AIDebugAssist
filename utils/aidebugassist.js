@@ -37,7 +37,7 @@ async function askGemini(prompt) {
 
 async function ask(prompt) {
  
-    return askGemini(`Por favor, agindo como um programador experiente, analise e explique esse erro em linguagem comum em ate 1000 caracteres, texto impessoal, directo, e em pontos: ${prompt}`);
+    return askGemini(`Por favor, agindo como um programador experiente, analise e explique esse erro em linguagem comum em ate 300 caracteres, texto impessoal, directo, e em pontos: ${prompt}`);
 }
 async function ask2(prompt) {
  

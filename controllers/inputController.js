@@ -20,7 +20,8 @@ const inputController = {
 
 
             try {
-                 const output = await ask2(input) 
+                //  const output = await ask2(input) 
+                const output = await ask(input) 
              
                 const resultOut = await Output.create({ message:output, user_id: 1,input_id: result[0].insertId  });
                 const endTime = Date.now();
