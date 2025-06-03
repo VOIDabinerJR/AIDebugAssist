@@ -37,7 +37,7 @@ async function askGemini(prompt) {
 
 async function ask(prompt) {
  
-    return askGemini(`em ate 1000 calracteres ${prompt}`);
+    return askGemini(`Em linguagem comum, identifique e explique os possiveis erros para a linguagem de programação Pascal:${prompt}. por favor não exceda 1000 caracteres`);
 }
 async function ask2(prompt) {
  
